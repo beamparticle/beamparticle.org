@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Module beamparticle_smtp_util</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css" title="EDoc">
+</head>
+<body bgcolor="white">
+<div class="navbar"><a name="#navbar_top"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<hr>
+
+<h1>Module beamparticle_smtp_util</h1>
+<ul class="index"><li><a href="#index">Function Index</a></li><li><a href="#functions">Function Details</a></li></ul>
+<p>Copyright © (C) 2017, Neeraj Sharma &lt;neeraj.sharma@alumni.iitg.ernet.in&gt;</p>
+
+<p><b>Authors:</b> neerajsharma.</p>
+
+<h2><a name="index">Function Index</a></h2>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#raw_send_email-4">raw_send_email/4</a></td><td></td></tr>
+<tr><td valign="top"><a href="#raw_send_email-6">raw_send_email/6</a></td><td>Send email via smtp as a blocking call.</td></tr>
+<tr><td valign="top"><a href="#save_email_file-2">save_email_file/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#send_email_with_attachment-4">send_email_with_attachment/4</a></td><td>send out email notification including attachments with pre       
+configured smtp credentials.</td></tr>
+<tr><td valign="top"><a href="#send_plain_email-3">send_plain_email/3</a></td><td>send out email notification with pre configured smtp credentials.</td></tr>
+</table>
+
+<h2><a name="functions">Function Details</a></h2>
+
+<h3 class="function"><a name="raw_send_email-4">raw_send_email/4</a></h3>
+<div class="spec">
+<p><tt>raw_send_email(FromUsername::binary(), ToEmail::binary(), Subject::binary(), Body::binary()) -&gt; binary() | {error, atom(), any()} | {error, any()}</tt><br></p>
+</div>
+
+<h3 class="function"><a name="raw_send_email-6">raw_send_email/6</a></h3>
+<div class="spec">
+<p><tt>raw_send_email(FromEmail::binary(), ToEmail::binary(), Subject::binary(), Body::binary(), SmtpServer::binary(), SmtpPassword::binary()) -&gt; binary() | {error, atom(), any()} | {error, any()}</tt><br></p>
+</div><p><p>Send email via smtp as a blocking call.</p>
+ 
+  <pre>    FromEmail = &lt;&lt;"username@abc.com"&gt;&gt;,
+    ToEmail = &lt;&lt;"destination@example.com"&gt;&gt;,
+    Subject = &lt;&lt;"hello neeraj"&gt;&gt;,
+    Body = &lt;&lt;"hi neeraj\nLet me introduce myself\n"&gt;&gt;,
+    SmtpServer = &lt;&lt;"smtp.gmail.com"&gt;&gt;,
+    SmtpPassword = &lt;&lt;"Password"&gt;&gt;.
+    beamparticle_smtp_util:raw_send_email(FromEmail, ToEmail, Subject, Body, SmtpServer, SmtpPassword).</pre>
+ 
+  The above returns binary() or
+  <pre>    &lt;&lt;"2.0.0 OK 1511889452 t84sm55737897pfe.160 - gsmtp\r\n"&gt;&gt;.</pre>
+ 
+  <pre>    Email = {
+      "username@abc.com",
+      ["destination@example.com"],
+      &lt;&lt;"From: Someone &lt;username@abc.com&gt;\r\nTo: Dest &lt;destination@example.com&gt;\r\nSubject: Hello\r\n\r\nit is a test."&gt;&gt;
+    },
+    Options = [
+      {ssl,true},
+      {no_mx_lookups,true},
+      {relay,"smtp.gmail.com"},
+      {username,"username@abc.com"},
+      {password,"Password"},
+      {auth,always},
+      {trace_fun, fun io:format/2}
+    ],
+    gen_smtp_client:send_blocking(Email, Options).</pre>
+ </p>
+
+<h3 class="function"><a name="save_email_file-2">save_email_file/2</a></h3>
+<div class="spec">
+<p><tt>save_email_file(Data::binary(), Reference::string()) -&gt; ok</tt><br></p>
+</div>
+
+<h3 class="function"><a name="send_email_with_attachment-4">send_email_with_attachment/4</a></h3>
+<div class="spec">
+<p><tt>send_email_with_attachment(ToEmails::[binary()], Subject::binary(), InlineContents::[{ContentType::binary(), Body::binary()}], Attachments::[{Name::binary(), MimeType::binary(), Cid::binary(), IsInline::boolean(), Body::binary()}]) -&gt; binary() | {error, atom(), any()} | {error, any()}</tt><br></p>
+</div><p><p>send out email notification including attachments with pre       
+configured smtp credentials.</p>
+ 
+  <p>Note that the credentials are taking from the configuration.  
+see sys.config for details.  
+ToEmails and Attachments must be as follows:</p>
+ 
+  <pre>  ToEmails = [&lt;&lt;"Name &lt;someone@example.com&gt;"&gt;&gt;, ...],
+  Attachments  = [{&lt;&lt;"someone.jpg"&gt;&gt;, &lt;&lt;"image/jpeg"&gt;&gt;, JpegImageBin}]</pre>
+ 
+  <p>The MimeType is one of media type in RFC 2822, RFC 2045.  
+see https://en.wikipedia.org/wiki/Media_type.</p>
+ 
+  Note that the InlineContentType determines the media type
+  of the Body (argument), which will be sent as inline.
+  In case you want to send an email as HTML then set
+  the Body with html content and ContentType as
+  <pre>  &lt;&lt;"text/html;charset=utf-8"&gt;&gt;.</pre><p>  
+Some sample Media Types are as follows:</p>
+ 
+  * application/json
+  * application/xml
+  * application/zip
+  * application/pdf
+  * application/sql
+  * application/ld+json
+  * application/msword (.doc)
+  * application/vnd.openxmlformats-officedocument.wordprocessingml.document(.docx)
+  * application/vnd.ms-excel (.xls)
+  * application/vnd.openxmlformats-officedocument.spreadsheetml.sheet (.xlsx)
+  * application/vnd.ms-powerpoint (.ppt)
+  * application/vnd.openxmlformats-officedocument.presentationml.presentation (.pptx)
+  * audio/mpeg
+  * audio/vorbis
+  * multipart/form-data
+  * text/css
+  * text/html
+  * text/csv
+  * text/plain
+  * image/png
+  * image/jpeg
+  * image/gif</p>
+
+<h3 class="function"><a name="send_plain_email-3">send_plain_email/3</a></h3>
+<div class="spec">
+<p><tt>send_plain_email(ToEmails::[binary()], Subject::binary(), Body::binary()) -&gt; binary() | {error, atom(), any()} | {error, any()}</tt><br></p>
+</div><p>send out email notification with pre configured smtp credentials.
+  Note that the credentials are taking from the configuration.
+  see sys.config for details.
+  ToEmails must be as follows:
+  <pre>  ToEmails = [&lt;&lt;"Name &lt;someone@example.com&gt;"&gt;&gt;, ...]</pre></p>
+<hr>
+
+<div class="navbar"><a name="#navbar_bottom"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<p><i>Generated by EDoc</i></p>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Module beamparticle_smtp_server</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css" title="EDoc">
+</head>
+<body bgcolor="white">
+<div class="navbar"><a name="#navbar_top"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<hr>
+
+<h1>Module beamparticle_smtp_server</h1>
+<ul class="index"><li><a href="#description">Description</a></li><li><a href="#types">Data Types</a></li><li><a href="#index">Function Index</a></li><li><a href="#functions">Function Details</a></li></ul>A callback module for <code>gen_smtp_server_session</code> for
+   implementing smtp server.
+
+<p><b>Behaviours:</b> <a href="gen_smtp_server_session.html"><tt>gen_smtp_server_session</tt></a>.</p>
+
+<h2><a name="description">Description</a></h2>A callback module for <code>gen_smtp_server_session</code> for
+   implementing smtp server.
+   Copied from https://github.com/Vagabond/gen_smtp/blob/master/src/smtp_server_example.erl
+<h2><a name="types">Data Types</a></h2>
+
+<h3 class="typedecl"><a name="type-error_message">error_message()</a></h3>
+<p><tt>error_message() = {error, string(), #state{options = list()}}</tt></p>
+
+
+<h2><a name="index">Function Index</a></h2>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#code_change-3">code_change/3</a></td><td></td></tr>
+<tr><td valign="top"><a href="#handle_AUTH-4">handle_AUTH/4</a></td><td></td></tr>
+<tr><td valign="top"><a href="#handle_DATA-4">handle_DATA/4</a></td><td></td></tr>
+<tr><td valign="top"><a href="#handle_EHLO-3">handle_EHLO/3</a></td><td>Handle the EHLO verb from the client.</td></tr>
+<tr><td valign="top"><a href="#handle_HELO-2">handle_HELO/2</a></td><td>Handle the HELO verb from the client.</td></tr>
+<tr><td valign="top"><a href="#handle_MAIL-2">handle_MAIL/2</a></td><td>Handle the MAIL FROM verb.</td></tr>
+<tr><td valign="top"><a href="#handle_MAIL_extension-2">handle_MAIL_extension/2</a></td><td>Handle an extension to the MAIL verb.</td></tr>
+<tr><td valign="top"><a href="#handle_RCPT-2">handle_RCPT/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#handle_RCPT_extension-2">handle_RCPT_extension/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#handle_RSET-1">handle_RSET/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#handle_STARTTLS-1">handle_STARTTLS/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#handle_VRFY-2">handle_VRFY/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#handle_info-2">handle_info/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#handle_other-3">handle_other/3</a></td><td></td></tr>
+<tr><td valign="top"><a href="#init-4">init/4</a></td><td>Initialize the callback module's state for a new session.</td></tr>
+<tr><td valign="top"><a href="#terminate-2">terminate/2</a></td><td></td></tr>
+</table>
+
+<h2><a name="functions">Function Details</a></h2>
+
+<h3 class="function"><a name="code_change-3">code_change/3</a></h3>
+<div class="spec">
+<p><tt>code_change(OldVsn::any(), State::#state{options = list()}, Extra::any()) -&gt; {ok, #state{options = list()}}</tt><br></p>
+</div>
+
+<h3 class="function"><a name="handle_AUTH-4">handle_AUTH/4</a></h3>
+<div class="spec">
+<p><tt>handle_AUTH(Type::login | plain | 'cram-md5', Username::binary(), Password::binary() | {binary(), binary()}, State::#state{options = list()}) -&gt; {ok, #state{options = list()}} | error</tt><br></p>
+</div>
+
+<h3 class="function"><a name="handle_DATA-4">handle_DATA/4</a></h3>
+<div class="spec">
+<p><tt>handle_DATA(From::binary(), To::[binary(), ...], Data::binary(), State::#state{options = list()}) -&gt; {ok, string(), #state{options = list()}} | {error, string(), #state{options = list()}}</tt><br></p>
+</div>
+
+<h3 class="function"><a name="handle_EHLO-3">handle_EHLO/3</a></h3>
+<div class="spec">
+<p><tt>handle_EHLO(Hostname::binary(), Extensions::list(), State::#state{options = list()}) -&gt; {ok, list(), #state{options = list()}} | <a href="#type-error_message">error_message()</a></tt><br></p>
+</div><p><p>Handle the EHLO verb from the client. As with EHLO the hostname is provided as an argument,  
+but in addition to that the list of ESMTP Extensions enabled in the session is passed. This list  
+of extensions can be modified by the callback module to add/remove extensions.</p>
+ 
+  The return values are <code>{ok, Extensions, State}</code> where Extensions is the new list of extensions
+  to use for this session or <code>{error, Message, State}</code> where Message is the reject message as
+  with handle_HELO.</p>
+
+<h3 class="function"><a name="handle_HELO-2">handle_HELO/2</a></h3>
+<div class="spec">
+<p><tt>handle_HELO(Hostname::binary(), State::#state{options = list()}) -&gt; {ok, pos_integer(), #state{options = list()}} | {ok, #state{options = list()}} | <a href="#type-error_message">error_message()</a></tt><br></p>
+</div><p><p>Handle the HELO verb from the client. Arguments are the Hostname sent by the client as  
+part of the HELO and the callback State.</p>
+ 
+  Return values are <code>{ok, State}</code> to simply continue with a new state, <code>{ok, MessageSize, State}</code>
+  to continue with the SMTP session but to impose a maximum message size (which you can determine
+  , for example, by looking at the IP address passed in to the init function) and the new callback
+  state. You can reject the HELO by returning <code>{error, Message, State}</code> and the Message will be
+  sent back to the client. The reject message MUST contain the SMTP status code, eg. 554.</p>
+
+<h3 class="function"><a name="handle_MAIL-2">handle_MAIL/2</a></h3>
+<div class="spec">
+<p><tt>handle_MAIL(From::binary(), State::#state{options = list()}) -&gt; {ok, #state{options = list()}} | <a href="#type-error_message">error_message()</a></tt><br></p>
+</div><p><p>Handle the MAIL FROM verb. The From argument is the email address specified by the
+  MAIL FROM command. Extensions to the MAIL verb are handled by the <code>handle_MAIL_extension</code>  
+function.</p>
+ 
+  Return values are either <code>{ok, State}</code> or <code>{error, Message, State}</code> as before.</p>
+
+<h3 class="function"><a name="handle_MAIL_extension-2">handle_MAIL_extension/2</a></h3>
+<div class="spec">
+<p><tt>handle_MAIL_extension(Extension::binary(), State::#state{options = list()}) -&gt; {ok, #state{options = list()}} | error</tt><br></p>
+</div><p>Handle an extension to the MAIL verb. Return either <code>{ok, State}</code> or <code>error</code> to reject
+  the option.</p>
+
+<h3 class="function"><a name="handle_RCPT-2">handle_RCPT/2</a></h3>
+<div class="spec">
+<p><tt>handle_RCPT(To::binary(), State::#state{options = list()}) -&gt; {ok, #state{options = list()}} | {error, string(), #state{options = list()}}</tt><br></p>
+</div>
+
+<h3 class="function"><a name="handle_RCPT_extension-2">handle_RCPT_extension/2</a></h3>
+<div class="spec">
+<p><tt>handle_RCPT_extension(Extension::binary(), State::#state{options = list()}) -&gt; {ok, #state{options = list()}} | error</tt><br></p>
+</div>
+
+<h3 class="function"><a name="handle_RSET-1">handle_RSET/1</a></h3>
+<div class="spec">
+<p><tt>handle_RSET(State::#state{options = list()}) -&gt; #state{options = list()}</tt><br></p>
+</div>
+
+<h3 class="function"><a name="handle_STARTTLS-1">handle_STARTTLS/1</a></h3>
+<div class="spec">
+<p><tt>handle_STARTTLS(State::#state{options = list()}) -&gt; #state{options = list()}</tt><br></p>
+</div>
+
+<h3 class="function"><a name="handle_VRFY-2">handle_VRFY/2</a></h3>
+<div class="spec">
+<p><tt>handle_VRFY(Address::binary(), State::#state{options = list()}) -&gt; {ok, string(), #state{options = list()}} | {error, string(), #state{options = list()}}</tt><br></p>
+</div>
+
+<h3 class="function"><a name="handle_info-2">handle_info/2</a></h3>
+<div class="spec">
+<p><tt>handle_info(Info::term(), State::term()) -&gt; {noreply, NewState::term()} | {noreply, NewState::term(), timeout() | hibernate} | {stop, Reason::term(), NewState::term()}</tt><br></p>
+</div>
+
+<h3 class="function"><a name="handle_other-3">handle_other/3</a></h3>
+<div class="spec">
+<p><tt>handle_other(Verb::binary(), Args::binary(), State::#state{options = list()}) -&gt; {string(), #state{options = list()}}</tt><br></p>
+</div>
+
+<h3 class="function"><a name="init-4">init/4</a></h3>
+<div class="spec">
+<p><tt>init(Hostname::binary(), SessionCount::non_neg_integer(), Address::tuple(), Options::list()) -&gt; {ok, string(), #state{options = list()}} | {stop, any(), string()}</tt><br></p>
+</div><p><p>Initialize the callback module's state for a new session.
+  The arguments to the function are the SMTP server's hostname (for use in the SMTP anner),
+  The number of current sessions (eg. so you can do session limiting), the IP address of the
+  connecting client, and a freeform list of options for the module. The Options are extracted
+  from the <code>callbackoptions</code> parameter passed into the <code>gen_smtp_server_session</code> when it was  
+started.</p>
+ 
+  If you want to continue the session, return <code>{ok, Banner, State}</code> where Banner is the SMTP
+  banner to send to the client and State is the callback module's state. The State will be passed
+  to ALL subsequent calls to the callback module, so it can be used to keep track of the SMTP
+  session. You can also return <code>{stop, Reason, Message}</code> where the session will exit with Reason
+  and send Message to the client.</p>
+
+<h3 class="function"><a name="terminate-2">terminate/2</a></h3>
+<div class="spec">
+<p><tt>terminate(Reason::any(), State::#state{options = list()}) -&gt; {ok, any(), #state{options = list()}}</tt><br></p>
+</div>
+<hr>
+
+<div class="navbar"><a name="#navbar_bottom"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<p><i>Generated by EDoc</i></p>
+</body>
+</html>

@@ -1,0 +1,400 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. About &mdash; BeamParticle 0.1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="author" title="About these documents"
+              href="#"/>
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="BeamParticle 0.1.0 documentation" href="index.html"/>
+        <link rel="next" title="2. Release notes" href="releasenotes.html"/>
+        <link rel="prev" title="BEAMParticle" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> BeamParticle
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. About</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">1.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#motivations">1.2. Motivations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#architecture">1.3. Architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#components">1.3.1. Components</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#the-future">1.4. The Future</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#similar-projects">1.5. Similar Projects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deployment">1.6. Deployment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#software-dependencies">1.6.1. Software Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#development-environment-setup">1.6.2. Development Environment Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ubuntu-or-debian">1.6.2.1. Ubuntu or Debian</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#build-and-test">1.6.3. Build and Test</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#browser-support">1.7. Browser Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#thanks">1.8. Thanks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#authors">1.9. Authors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="releasenotes.html">2. Release notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">3. Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="links.html">4. Important links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">5. Contact</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">6. Frequently Asked Questions</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BeamParticle</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>1. About</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/about.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="about">
+<span id="id1"></span><h1>1. About<a class="headerlink" href="#about" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">BEAM stands for Bogdan/Björn’s Erlang Abstract Machine.</p>
+</div>
+<div class="section" id="introduction">
+<h2>1.1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This project is an attempt to make the Erlang/OTP framework more approachable and
+re-programmable in a manner which otherwise is complex. Although, Erlang supports
+hot code-loading and many of the advanced constructs, but using that correctly is
+not without complexities. This project tries to take some simple decisions thereby
+making the life of developer easy in realising dynamic code patching and
+reprogrammability. This project can be used as a standalone engine or can be embedded in
+another Erlang project, while much of what will be demonstrated is based out of its
+standalone deployment.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Documentation and testing is lacking, but you will see some
+action both of these fronts. Till then happy hacking around.
+Additionally, you are most welcome to make contributions.</p>
+</div>
+</div>
+<div class="section" id="motivations">
+<h2>1.2. Motivations<a class="headerlink" href="#motivations" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="architecture">
+<h2>1.3. Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h2>
+<p>The websocket interface is provided to train the system, while Google LevelDB is used for storing and retrieving Erlang functions. Additionally, the functions are cached in memory, so subsequent invocation shall be much faster.</p>
+<p>At present there is no restriction on function execution, so anyone with access can simply run any function available within this framework. Having said that there is HTTP Basic authentication both at websocket and HTTPS REST interface for simple checks. But once you are authenticated all the functions are available for execution.</p>
+<div class="section" id="components">
+<h3>1.3.1. Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h3>
+<p>The framework has the following components:</p>
+<ul class="simple">
+<li>core - Set of utilities for running Erlang/OTP functions.</li>
+<li>websocket - A simple websocket interface to train beampacket
+and tell it about functions.</li>
+<li>https rest - A HTTPS REST interface, where the functions
+defined through the websocket interface are served
+as endpoint (HTTP POST with application/json body).</li>
+<li>storage - There is a local Google leveldb which is extensively
+used primarily to meet the time-to-market requirement.
+This shall change as time progresses towards a better strategy.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="the-future">
+<h2>1.4. The Future<a class="headerlink" href="#the-future" title="Permalink to this headline">¶</a></h2>
+<p>It is very hard to predict where this project will move on.
+This is a very humble beginning, where it is not entirely
+clear how this project shall find use in the larger audience.</p>
+</div>
+<div class="section" id="similar-projects">
+<h2>1.5. Similar Projects<a class="headerlink" href="#similar-projects" title="Permalink to this headline">¶</a></h2>
+<p>We are not aware of projects which tries to do this as-it-is, but
+then intenet is too vast for us to comment. Do leave a comment
+in case you find any similar open source or commercial projects.</p>
+</div>
+<div class="section" id="deployment">
+<h2>1.6. Deployment<a class="headerlink" href="#deployment" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="software-dependencies">
+<h3>1.6.1. Software Dependencies<a class="headerlink" href="#software-dependencies" title="Permalink to this headline">¶</a></h3>
+<p>This framework supports <em>Gnu/Linux</em> and <em>MacOSX</em> operating system, but with
+little change it can be made to build on any of the POSIX compliant
+operating system when Erlang/OTP is available. This project depends upon
+a lot of open source dependencies, which are listed in rebar.config.</p>
+</div>
+<div class="section" id="development-environment-setup">
+<h3>1.6.2. Development Environment Setup<a class="headerlink" href="#development-environment-setup" title="Permalink to this headline">¶</a></h3>
+<p>Although the installation for various GNU/Linux distributions differ but
+the dependencies are easily available on any one of them.</p>
+<div class="section" id="ubuntu-or-debian">
+<h4>1.6.2.1. Ubuntu or Debian<a class="headerlink" href="#ubuntu-or-debian" title="Permalink to this headline">¶</a></h4>
+<p>The following commands were tested on Ubuntu 16.04 and Debian 9
+but things should be similar (if not same) on other releases and Debian.</p>
+<p>The following commands needs to be as a system administrator or with sudo
+(as shown below) so that the relavent packages are installed in the
+system.</p>
+<p>If your system is not updated then probably it is a good idea to do that
+before installing anything else.</p>
+<blockquote>
+<div>sudo apt-get update</div></blockquote>
+<p>Install the build essential and deps for Erlang/OTP</p>
+<blockquote>
+<div>sudo apt-get install -y wget build-essentials libsctp1 libwxgtk3.0</div></blockquote>
+<p>Get Erlang/OTP 20+ from ErlangSolutions at
+<a class="reference external" href="https://www.erlang-solutions.com/resources/download.html">https://www.erlang-solutions.com/resources/download.html</a></p>
+<p>Say you downloaded Erlang/OTP 20.1 then install it for ubuntu
+as follows:</p>
+<blockquote>
+<div>wget <a class="reference external" href="https://packages.erlang-solutions.com/erlang/esl-erlang/FLAVOUR_1_general/esl-erlang_20.1-1~ubuntu~xenial_amd64.deb">https://packages.erlang-solutions.com/erlang/esl-erlang/FLAVOUR_1_general/esl-erlang_20.1-1~ubuntu~xenial_amd64.deb</a>
+sudo dpkg -i esl-erlang_20.1-1~ubuntu~xenial_amd64.deb</div></blockquote>
+<p>Alternatively, you can install the erlang from Ubuntu or Debian repo as well.</p>
+</div>
+</div>
+<div class="section" id="build-and-test">
+<h3>1.6.3. Build and Test<a class="headerlink" href="#build-and-test" title="Permalink to this headline">¶</a></h3>
+<p>After you are done setting up the development environment the build is
+pretty straight-forward (see below).</p>
+<blockquote>
+<div>git clone <a class="reference external" href="https://github.com/beamparticle/beamparticle">https://github.com/beamparticle/beamparticle</a>
+cd beamparticle
+make release</div></blockquote>
+<p>In case you want to build a package then use the deb-package makefile
+target towards the same (see below).</p>
+<blockquote>
+<div>make deb-package</div></blockquote>
+</div>
+</div>
+<div class="section" id="browser-support">
+<h2>1.7. Browser Support<a class="headerlink" href="#browser-support" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Chrome</li>
+<li>Firefox</li>
+</ul>
+<p>Note that Safari do not work due to <a class="reference external" href="https://bugs.webkit.org/show_bug.cgi?id=80362">bug#80362</a>.
+The request from Safari do not include the Authorization header, which is the source
+of an issue.</p>
+</div>
+<div class="section" id="thanks">
+<h2>1.8. Thanks<a class="headerlink" href="#thanks" title="Permalink to this headline">¶</a></h2>
+<p>Thanks for evaluating and contributing to this project. Hope you
+find it useful. Feel free to create issues for bugs or new features.</p>
+<p>Erlang/OTP is a very old programming language and a very powerful one
+as well (though under utilized). The objective of the framework is
+to try to leverage some part of the power and give back to
+the community a reprogrammable engine with the power of BEAM.</p>
+<p>A special note of thanks to <a class="reference external" href="http://www.redbus.com">redBus</a> for
+being the first in integrating it within its production environment
+and allowing <a class="reference external" href="https://github.com/neeraj9">github:neeraj9</a> to
+introduce this to a much larger audience.</p>
+</div>
+<div class="section" id="authors">
+<h2>1.9. Authors<a class="headerlink" href="#authors" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Neeraj Sharma (<a class="reference external" href="mailto:neeraj&#46;sharma&#37;&#52;&#48;alumni&#46;iitg&#46;ernet&#46;in">neeraj<span>&#46;</span>sharma<span>&#64;</span>alumni<span>&#46;</span>iitg<span>&#46;</span>ernet<span>&#46;</span>in</a>)</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="releasenotes.html" class="btn btn-neutral float-right" title="2. Release notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="BEAMParticle" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Neeraj Sharma.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

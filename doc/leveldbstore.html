@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Module leveldbstore</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css" title="EDoc">
+</head>
+<body bgcolor="white">
+<div class="navbar"><a name="#navbar_top"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<hr>
+
+<h1>Module leveldbstore</h1>
+<ul class="index"><li><a href="#description">Description</a></li><li><a href="#types">Data Types</a></li><li><a href="#index">Function Index</a></li><li><a href="#functions">Function Details</a></li></ul>.
+
+
+<h2><a name="description">Description</a></h2>
+  
+<h2><a name="types">Data Types</a></h2>
+
+<h3 class="typedecl"><a name="type-state">state()</a></h3>
+<p><tt>state() = #state{}</tt></p>
+
+
+<h2><a name="index">Function Index</a></h2>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#create-3">create/3</a></td><td></td></tr>
+<tr><td valign="top"><a href="#delete-2">delete/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#delete_expired_keys-1">delete_expired_keys/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#drop_db_and_create_again-1">drop_db_and_create_again/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#dropall-1">dropall/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#init-1">init/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#lapply-3">lapply/3</a></td><td></td></tr>
+<tr><td valign="top"><a href="#read-2">read/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#terminate-1">terminate/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#timer_expired-1">timer_expired/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#update-3">update/3</a></td><td></td></tr>
+</table>
+
+<h2><a name="functions">Function Details</a></h2>
+
+<h3 class="function"><a name="create-3">create/3</a></h3>
+<div class="spec">
+<p><tt>create(K::binary(), V::binary(), State::<a href="#type-state">state()</a>) -&gt; {ok | {error, any()}, <a href="#type-state">state()</a>}</tt><br></p>
+</div>
+
+<h3 class="function"><a name="delete-2">delete/2</a></h3>
+<div class="spec">
+<p><tt>delete(K::binary(), State::<a href="#type-state">state()</a>) -&gt; {ok | {error, not_found}, <a href="#type-state">state()</a>}</tt><br></p>
+</div>
+
+<h3 class="function"><a name="delete_expired_keys-1">delete_expired_keys/1</a></h3>
+<div class="spec">
+<p><tt>delete_expired_keys(State::<a href="#type-state">state()</a>) -&gt; ok</tt><br></p>
+</div>
+
+<h3 class="function"><a name="drop_db_and_create_again-1">drop_db_and_create_again/1</a></h3>
+<div class="spec">
+<p><tt>drop_db_and_create_again(State::<a href="#type-state">state()</a>) -&gt; <a href="#type-state">state()</a></tt><br></p>
+</div>
+
+<h3 class="function"><a name="dropall-1">dropall/1</a></h3>
+<div class="spec">
+<p><tt>dropall(State::<a href="#type-state">state()</a>) -&gt; ok</tt><br></p>
+</div>
+
+<h3 class="function"><a name="init-1">init/1</a></h3>
+<div class="spec">
+<p><tt>init(Args::term()) -&gt; <a href="#type-state">state()</a></tt><br></p>
+</div>
+
+<h3 class="function"><a name="lapply-3">lapply/3</a></h3>
+<div class="spec">
+<p><tt>lapply(Fn::fun(({binary(), binary()}, {term(), <a href="#type-state">state()</a>}) -&gt; {term(), <a href="#type-state">state()</a>}), KeyPrefix::binary(), State::<a href="#type-state">state()</a>) -&gt; {ok, term()} | {error, term()}</tt><br></p>
+</div>
+
+<h3 class="function"><a name="read-2">read/2</a></h3>
+<div class="spec">
+<p><tt>read(K::binary(), State::<a href="#type-state">state()</a>) -&gt; {{ok, V::binary()} | {error, not_found}, <a href="#type-state">state()</a>}</tt><br></p>
+</div>
+
+<h3 class="function"><a name="terminate-1">terminate/1</a></h3>
+<div class="spec">
+<p><tt>terminate(State::<a href="#type-state">state()</a>) -&gt; ok</tt><br></p>
+</div>
+
+<h3 class="function"><a name="timer_expired-1">timer_expired/1</a></h3>
+<div class="spec">
+<p><tt>timer_expired(Pid::pid()) -&gt; ok</tt><br></p>
+</div>
+
+<h3 class="function"><a name="update-3">update/3</a></h3>
+<div class="spec">
+<p><tt>update(K::binary(), V::binary(), State::<a href="#type-state">state()</a>) -&gt; {ok | {error, any()}, <a href="#type-state">state()</a>}</tt><br></p>
+</div>
+<hr>
+
+<div class="navbar"><a name="#navbar_bottom"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<p><i>Generated by EDoc</i></p>
+</body>
+</html>

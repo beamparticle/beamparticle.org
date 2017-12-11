@@ -1,0 +1,12 @@
+%% encoding: UTF-8
+{application,beamparticle}.
+{modules,[beamparticle_app,beamparticle_auth,beamparticle_cache_util,
+          beamparticle_callback,beamparticle_cluster_monitor,
+          beamparticle_dynamic,beamparticle_dynamic_function_model,
+          beamparticle_erlparser,beamparticle_generic_handler,
+          beamparticle_generic_pool_worker,beamparticle_globalstore,
+          beamparticle_jobs,beamparticle_k_model,beamparticle_pools,
+          beamparticle_smtp_email,beamparticle_smtp_server,
+          beamparticle_smtp_util,beamparticle_storage_util,beamparticle_sup,
+          beamparticle_urlutils,beamparticle_util,beamparticle_ws_handler,
+          leveldbstore,leveldbstore_proc,log_utils,memstore,memstore_proc]}.

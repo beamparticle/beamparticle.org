@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Module leveldbstore_proc</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css" title="EDoc">
+</head>
+<body bgcolor="white">
+<div class="navbar"><a name="#navbar_top"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<hr>
+
+<h1>Module leveldbstore_proc</h1>
+<ul class="index"><li><a href="#description">Description</a></li><li><a href="#types">Data Types</a></li><li><a href="#index">Function Index</a></li><li><a href="#functions">Function Details</a></li></ul>   
+The general architecture of a singular process per base REST API   
+will lead to a lot of messages into this process.
+
+<p><b>Behaviours:</b> <a href="gen_server.html"><tt>gen_server</tt></a>.</p>
+
+<h2><a name="description">Description</a></h2><p>   
+The general architecture of a singular process per base REST API   
+will lead to a lot of messages into this process. This has the   
+benefit of sequential operation thereby making it easy for features   
+like key expiry to be implemented, but do not allow simultaneous   
+read/writes on the backend.</p>
+  
+   An alternative strategy, would be for this process would be to
+   change leveldbstore use eleveldb async calls and keep references
+   of callers rather than blocking each message and reply sequentially.
+   This will allow usage of eleveldb backend to the maximum, where its
+   underlying threads will be forced to work in parallel. Having said
+   that when key partition is done then the mentioned parallelism could
+   be an overhead although this needs more research and detailed
+   analysis to be correctly implemented.
+  
+<h2><a name="types">Data Types</a></h2>
+
+<h3 class="typedecl"><a name="type-key">key()</a></h3>
+<p><tt>key() = term()</tt></p>
+
+
+<h3 class="typedecl"><a name="type-name">name()</a></h3>
+<p><tt>name() = atom()</tt></p>
+
+
+<h3 class="typedecl"><a name="type-state">state()</a></h3>
+<p><tt>state() = term()</tt></p>
+
+
+<h3 class="typedecl"><a name="type-val">val()</a></h3>
+<p><tt>val() = term()</tt></p>
+
+
+<h2><a name="index">Function Index</a></h2>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#code_change-3">code_change/3</a></td><td></td></tr>
+<tr><td valign="top"><a href="#create-4">create/4</a></td><td></td></tr>
+<tr><td valign="top"><a href="#delete-3">delete/3</a></td><td></td></tr>
+<tr><td valign="top"><a href="#get_pid-1">get_pid/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#handle_call-3">handle_call/3</a></td><td></td></tr>
+<tr><td valign="top"><a href="#handle_cast-2">handle_cast/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#handle_info-2">handle_info/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#init-1">init/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#lapply-4">lapply/4</a></td><td></td></tr>
+<tr><td valign="top"><a href="#read-3">read/3</a></td><td></td></tr>
+<tr><td valign="top"><a href="#start_link-1">start_link/1</a></td><td></td></tr>
+<tr><td valign="top"><a href="#start_link-2">start_link/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#terminate-2">terminate/2</a></td><td></td></tr>
+<tr><td valign="top"><a href="#update-4">update/4</a></td><td></td></tr>
+</table>
+
+<h2><a name="functions">Function Details</a></h2>
+
+<h3 class="function"><a name="code_change-3">code_change/3</a></h3>
+<div class="spec">
+<p><tt>code_change(OldVsn, State, Extra) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="create-4">create/4</a></h3>
+<div class="spec">
+<p><tt>create(Name::<a href="#type-name">name()</a>, K::<a href="#type-key">key()</a>, V::<a href="#type-val">val()</a>, State::<a href="#type-state">state()</a>) -&gt; boolean()</tt><br></p>
+</div>
+
+<h3 class="function"><a name="delete-3">delete/3</a></h3>
+<div class="spec">
+<p><tt>delete(Name::<a href="#type-name">name()</a>, K::<a href="#type-key">key()</a>, State::<a href="#type-state">state()</a>) -&gt; boolean()</tt><br></p>
+</div>
+
+<h3 class="function"><a name="get_pid-1">get_pid/1</a></h3>
+<div class="spec">
+<p><tt>get_pid(Poolname::atom()) -&gt; pid() | {error, disconnected}</tt><br></p>
+</div>
+
+<h3 class="function"><a name="handle_call-3">handle_call/3</a></h3>
+<div class="spec">
+<p><tt>handle_call(X1, From, State) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="handle_cast-2">handle_cast/2</a></h3>
+<div class="spec">
+<p><tt>handle_cast(X1, State) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="handle_info-2">handle_info/2</a></h3>
+<div class="spec">
+<p><tt>handle_info(X1, State) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="init-1">init/1</a></h3>
+<div class="spec">
+<p><tt>init(X1) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="lapply-4">lapply/4</a></h3>
+<div class="spec">
+<p><tt>lapply(Name::<a href="#type-name">name()</a>, Fun::fun(({binary(), binary()}, {term(), <a href="#type-state">state()</a>}) -&gt; term()), KeyPrefix::binary(), State::<a href="#type-state">state()</a>) -&gt; {ok, term()} | {error, term()}</tt><br></p>
+</div>
+
+<h3 class="function"><a name="read-3">read/3</a></h3>
+<div class="spec">
+<p><tt>read(Name::<a href="#type-name">name()</a>, K::<a href="#type-key">key()</a>, State::<a href="#type-state">state()</a>) -&gt; {ok, term()} | {error, not_found}</tt><br></p>
+</div>
+
+<h3 class="function"><a name="start_link-1">start_link/1</a></h3>
+<div class="spec">
+<p><tt>start_link(Name::atom()) -&gt; {ok, pid()}</tt><br></p>
+</div>
+
+<h3 class="function"><a name="start_link-2">start_link/2</a></h3>
+<div class="spec">
+<p><tt>start_link(X1::dbowner, DbOwnerProcName::atom()) -&gt; {ok, pid()}</tt><br></p>
+</div>
+
+<h3 class="function"><a name="terminate-2">terminate/2</a></h3>
+<div class="spec">
+<p><tt>terminate(X1, State) -&gt; any()</tt></p>
+</div>
+
+<h3 class="function"><a name="update-4">update/4</a></h3>
+<div class="spec">
+<p><tt>update(Name::<a href="#type-name">name()</a>, K::<a href="#type-key">key()</a>, V::<a href="#type-val">val()</a>, State::<a href="#type-state">state()</a>) -&gt; boolean()</tt><br></p>
+</div>
+<hr>
+
+<div class="navbar"><a name="#navbar_bottom"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<p><i>Generated by EDoc</i></p>
+</body>
+</html>
